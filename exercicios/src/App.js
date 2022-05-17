@@ -21,8 +21,8 @@
 
 // export default App;
 
-import React from "react";
-import { Text } from 'react-native';
+// import React from "react";
+// import { Text } from 'react-native';
 
 
 // const App = function (){
@@ -39,4 +39,20 @@ import { Text } from 'react-native';
 //     return <Text>Primeiro Componente!03</Text>;
 // }
 
-export default () => <Text>Primeiro Componente!!!</Text>;
+// export default () => <Text>Primeiro Componente!!!</Text>;
+
+
+import React from 'react';
+import { View, SafeAreaView } from 'react-native';
+
+import Primeiro from './components/Primeiro/Primeiro';
+
+export default () => {
+    return (
+        <SafeAreaView> 
+            <View> 
+                <Primeiro/> 
+            </View> 
+        </SafeAreaView>
+    );
+}
