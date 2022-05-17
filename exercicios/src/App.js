@@ -43,16 +43,16 @@
 
 
 import React from 'react';
-import { View, SafeAreaView } from 'react-native';
+import { View, SafeAreaView, StyleSheet } from 'react-native';
 
 import Primeiro from './components/Primeiro/Primeiro';
 import X, { Comp1, Comp2 } from './components/Multi/Multi'
 
 export default () => {
     return (
-        <SafeAreaView> 
+        <SafeAreaView style={style.App}> 
             <View> 
-                {/* <Primeiro/>  */}
+                <Primeiro/> 
                 <Comp1/>
                 <Comp2/>
                 <X/>
@@ -60,3 +60,12 @@ export default () => {
         </SafeAreaView>
     );
 }
+
+const style = StyleSheet.create ({
+    App: {
+        backgroundColor: "#A00",
+        flexGrow: 1,
+        justifyContent: "center",
+        alignItems: "center"
+    }
+});
