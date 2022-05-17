@@ -46,6 +46,7 @@ import React from 'react';
 import { View, SafeAreaView, StyleSheet } from 'react-native';
 
 
+import Botao from './components/Botao/Botao';
 import Frag from './components/Frag/Frag';
 // import Aleatorio from './components/Aleatorio/Aleatorio';
 // import MinMax from './components/MinMax/MinMax';
@@ -56,8 +57,9 @@ export default () => {
     return (
         <SafeAreaView style={style.App}> 
             <View> 
-                <Frag principal="Cadastro Produto" secundario="Tela de Cadastro"/>
-                {/* <Aleatorio min={1} max={100}/>
+                <Botao/>
+                {/*<Frag principal="Cadastro Produto" secundario="Tela de Cadastro"/>
+                <Aleatorio min={1} max={100}/>
                 <MinMax min={3} max={20}/>
                 <MinMax min={1} max={94}/>
                 <Primeiro/> 
