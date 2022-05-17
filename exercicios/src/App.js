@@ -45,8 +45,8 @@
 import React from 'react';
 import { View, SafeAreaView, StyleSheet } from 'react-native';
 
-
-import Contador from './components/Contador/Contador';
+import Pai from './components/Direta/Pai';
+// import Contador from './components/Contador/Contador';
 // import Botao from './components/Botao/Botao';
 // import Frag from './components/Frag/Frag';
 // import Aleatorio from './components/Aleatorio/Aleatorio';
@@ -57,9 +57,11 @@ import Contador from './components/Contador/Contador';
 export default () => {
     return (
         <SafeAreaView style={style.App}> 
-            <View> 
+            <View>
+                <Pai/>
+                {/*
                 <Contador inicial={100} passo={13}/>
-                {/* <Botao/>
+                <Botao/>
                 <Frag principal="Cadastro Produto" secundario="Tela de Cadastro"/>
                 <Aleatorio min={1} max={100}/>
                 <MinMax min={3} max={20}/>
