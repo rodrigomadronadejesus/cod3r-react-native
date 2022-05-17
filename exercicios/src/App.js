@@ -11,13 +11,32 @@
 //     );
 // }
 
+// import React from "react";
+// import { Text } from 'react-native';
+
+
+// function App() {
+//     return <Text>Primeiro Componente</Text>;
+// }
+
+// export default App;
+
 import React from "react";
 import { Text } from 'react-native';
 
 
-function App() {
-    const jsx = <Text>Primeiro Componente</Text>;
-    return jsx;
-}
+// const App = function (){
+//     return <Text>Primeiro Componente!</Text>;
+// }
 
-export default App;
+// export default App;
+
+// export default function (){
+//     return <Text>Primeiro Componente!</Text>;
+// }
+
+// export default () => {
+//     return <Text>Primeiro Componente!03</Text>;
+// }
+
+export default () => <Text>Primeiro Componente!!!</Text>;
