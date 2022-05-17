@@ -46,12 +46,16 @@ import React from 'react';
 import { View, SafeAreaView } from 'react-native';
 
 import Primeiro from './components/Primeiro/Primeiro';
+import X, { Comp1, Comp2 } from './components/Multi/Multi'
 
 export default () => {
     return (
         <SafeAreaView> 
             <View> 
-                <Primeiro/> 
+                {/* <Primeiro/>  */}
+                <Comp1/>
+                <Comp2/>
+                <X/>
             </View> 
         </SafeAreaView>
     );
