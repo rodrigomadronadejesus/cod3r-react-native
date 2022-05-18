@@ -74,7 +74,7 @@ export default () => {
     return (
         <SafeAreaView style={style.App}> 
             <View>
-                <Mega qtdeNumeros={12}/>
+                <Mega qtdeNumeros={6}/>
                 {/*
                     <FlexboxV4/>
                     <FlexboxV3/>
