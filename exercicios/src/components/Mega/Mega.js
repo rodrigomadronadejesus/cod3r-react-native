@@ -10,10 +10,23 @@ export default class Mega extends Component {
         qtdeNumeros: this.props.qtdeNumeros + 2000
     }
 
-    alterarQtdeNumero(qtde){
+    alterarQtdeNumero = (qtde) => {
         this.setState({ qtdeNumeros: qtde });
     }
 
+    // alterarQtdeNumero(qtde){
+    //     this.setState({ qtdeNumeros: qtde });
+    // }
+    
+
+    // (1)
+    // constructor (props){
+    //     super(props);
+
+    //     this.alterarQtdeNumero = this.alterarQtdeNumero.bind(this);
+    // }
+
+    // (2)
     // constructor (props){
     //     super(props)
 
@@ -29,9 +42,12 @@ export default class Mega extends Component {
                     Gerador de Mega-Sena {this.state.qtdeNumeros}
                 </Text>
                 <TextInput 
+                    keyboardType={'numeric'}
+                    style={{ borderBottomWidth: 1 }}
                     placeholder="Qtde de Números" 
                     value={this.state.qtdeNumeros}
-                    onChangeText={qtde => this.alterarQtdeNumero(qtde)}
+                    // onChangeText={(qtde) => this.alterarQtdeNumero(qtde)}
+                    onChangeText={this.alterarQtdeNumero}
                 />
             </Fragment>
         );
