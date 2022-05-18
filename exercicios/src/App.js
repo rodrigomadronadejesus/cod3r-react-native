@@ -45,8 +45,9 @@
 import React from 'react';
 import { View, SafeAreaView, StyleSheet } from 'react-native';
 
-import Familia from './components/Relacao/Familia';
-import Membro from './components/Relacao/Membro';
+import UsuarioLogado from './components/If/UsuarioLogado';
+// import Familia from './components/Relacao/Familia';
+// import Membro from './components/Relacao/Membro';
 // import Parimpar from './components/Parimpar/parimpar';
 // import Diferenciar from './components/Diferenciar/Diferenciar';
 // import ContadorV2 from './components/Contador/ContadorV2';
@@ -58,22 +59,23 @@ import Membro from './components/Relacao/Membro';
 // import Aleatorio from './components/Aleatorio/Aleatorio';
 // import MinMax from './components/MinMax/MinMax';
 // import Primeiro from './components/Primeiro/Primeiro';
-// import X, { Comp1, Comp2 } from './components/Multi/Multi'
+// import X, { Comp1, Comp2 } from './components/Multi/Multi';
 
 export default () => {
     return (
         <SafeAreaView style={style.App}> 
             <View>
-                <Familia>
-                    <Membro nome="bia" sobrenome="Arruda"/>
-                    <Membro nome="Carlos" sobrenome="Arruda"/>
-                </Familia>
-                <Familia>
-                    <Membro nome="Ana" sobrenome="Silva"/>
-                    <Membro nome="Julia" sobrenome="Silva"/>
-                </Familia>
-
+                <UsuarioLogado usuario={{nome: 'Gui', email: 'gui@gui.com'}}/>
+                <UsuarioLogado usuario={{nome: 'Carlos', email: 'carlos@gui.com'}}/>
                 {/*
+                    <Familia>
+                        <Membro nome="bia" sobrenome="Arruda"/>
+                        <Membro nome="Carlos" sobrenome="Arruda"/>
+                    </Familia>
+                    <Familia>
+                        <Membro nome="Ana" sobrenome="Silva"/>
+                        <Membro nome="Julia" sobrenome="Silva"/>
+                    </Familia>
                     <Parimpar num={3}/>
                     <Diferenciar/>
                     <ContadorV2/>
