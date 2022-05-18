@@ -45,7 +45,9 @@
 import React from 'react';
 import { View, SafeAreaView, StyleSheet } from 'react-native';
 
-import Parimpar from './components/Parimpar/parimpar';
+import Familia from './components/Relacao/Familia';
+import Membro from './components/Relacao/Membro';
+// import Parimpar from './components/Parimpar/parimpar';
 // import Diferenciar from './components/Diferenciar/Diferenciar';
 // import ContadorV2 from './components/Contador/ContadorV2';
 // import Pai from './components/Indireta/Pai';
@@ -62,10 +64,17 @@ export default () => {
     return (
         <SafeAreaView style={style.App}> 
             <View>
-                <Parimpar num={3}/>
+                <Familia>
+                    <Membro nome="bia" sobrenome="Arruda"/>
+                    <Membro nome="Carlos" sobrenome="Arruda"/>
+                </Familia>
+                <Familia>
+                    <Membro nome="Ana" sobrenome="Silva"/>
+                    <Membro nome="Julia" sobrenome="Silva"/>
+                </Familia>
 
                 {/*
-                
+                    <Parimpar num={3}/>
                     <Diferenciar/>
                     <ContadorV2/>
                     <Pai/>
@@ -89,7 +98,6 @@ export default () => {
 
 const style = StyleSheet.create ({
     App: {
-        backgroundColor: "#A00",
         flexGrow: 1,
         justifyContent: "center",
         alignItems: "center",
