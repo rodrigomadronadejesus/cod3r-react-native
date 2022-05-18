@@ -45,7 +45,8 @@
 import React from 'react';
 import { View, SafeAreaView, StyleSheet } from 'react-native';
 
-import Pai from './components/Direta/Pai';
+import Pai from './components/Indireta/Pai';
+// import Pai from './components/Direta/Pai';
 // import Contador from './components/Contador/Contador';
 // import Botao from './components/Botao/Botao';
 // import Frag from './components/Frag/Frag';
@@ -59,7 +60,7 @@ export default () => {
         <SafeAreaView style={style.App}> 
             <View>
                 <Pai/>
-                {/*
+                {/* <Pai/>
                 <Contador inicial={100} passo={13}/>
                 <Botao/>
                 <Frag principal="Cadastro Produto" secundario="Tela de Cadastro"/>
