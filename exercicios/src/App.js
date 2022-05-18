@@ -45,7 +45,8 @@
 import React from 'react';
 import { View, SafeAreaView, StyleSheet } from 'react-native';
 
-import Diferenciar from './components/Diferenciar/Diferenciar';
+import Parimpar from './components/Parimpar/parimpar';
+// import Diferenciar from './components/Diferenciar/Diferenciar';
 // import ContadorV2 from './components/Contador/ContadorV2';
 // import Pai from './components/Indireta/Pai';
 // import Pai from './components/Direta/Pai';
@@ -61,20 +62,26 @@ export default () => {
     return (
         <SafeAreaView style={style.App}> 
             <View>
-                <Diferenciar/>
-                {/*<ContadorV2/>
-                <Pai/>
-                <Pai/>
-                <Contador inicial={100} passo={13}/>
-                <Botao/>
-                <Frag principal="Cadastro Produto" secundario="Tela de Cadastro"/>
-                <Aleatorio min={1} max={100}/>
-                <MinMax min={3} max={20}/>
-                <MinMax min={1} max={94}/>
-                <Primeiro/> 
-                <Comp1/>
-                <Comp2/>
-                <X/> */}
+                <Parimpar num={3}/>
+
+                {/*
+                
+                    <Diferenciar/>
+                    <ContadorV2/>
+                    <Pai/>
+                    <Pai/>
+                    <Contador inicial={100} passo={13}/>
+                    <Botao/>
+                    <Frag principal="Cadastro Produto" secundario="Tela de Cadastro"/>
+                    <Aleatorio min={1} max={100}/>
+                    <MinMax min={3} max={20}/>
+                    <MinMax min={1} max={94}/>
+                    <Primeiro/> 
+                    <Comp1/>
+                    <Comp2/>
+                    <X/> 
+                
+                */}
             </View> 
         </SafeAreaView>
     );
