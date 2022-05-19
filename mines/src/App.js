@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import { Text, View, StyleSheet } from 'react-native';
+
+
 import params from './Params';
+import Field from "./components/Field";
+
 
 export default class App extends Component {
 
@@ -10,6 +14,8 @@ export default class App extends Component {
             <View>
                 <Text>Iniciando o Mines!</Text>
                 <Text>Tamanho da grade: </Text>
+
+                <Field/>
             </View>
         );
     }
@@ -17,5 +23,5 @@ export default class App extends Component {
 
 
 const styles = StyleSheet.create ({
-    
+
 });
