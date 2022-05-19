@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet } from 'react-native';
 
-
 import Button from './components/Button';
 import Display from "./components/Display";
-
 
 const initialState = {
     displayValue: '0',
@@ -21,6 +19,7 @@ export default class App extends Component {
     }
 
     addDigit = n => {
+        console.debug(typeof this.state.displayValue);
         const clearDisplay = this.state.displayValue === '0'
         || this.state.clearDisplay
       
