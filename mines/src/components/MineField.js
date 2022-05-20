@@ -9,7 +9,7 @@ export default props => {
         });
 
         return (
-            <View key={r}>{columns}</View>
+            <View key={r} style={{ flexDirection: 'row' }}>{columns}</View>
         );
     });
 
@@ -23,7 +23,6 @@ export default props => {
 
 const styles = StyleSheet.create ({
     Container: {
-        flexDirection: 'row',
         backgroundColor: '#EEE',
     }
 });
