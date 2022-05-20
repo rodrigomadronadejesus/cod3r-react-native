@@ -1,17 +1,27 @@
 import { parseAsync } from "@babel/core";
 import React from "react";
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import params from '../Params';
 
 export default props => {
-    const styleField = [styles.Field];
 
+    const { mined, opened, nearMines } = props;
+
+    const styleField = [styles.Field];
+    if (opened) styleField.push(styles.Opened)
     if (styleField.length === 1) styleField.push(styles.regular);
 
+    let color = null;
+    if(nearMines){
+        if(nearMines == 1) color = '#2A28D7';
+        if(nearMines == 2) color = '#2B520F';
+        if(nearMines > 2 && nearMines < 6) color = '#F9060A';
+        if(nearMines >= 6) color = '#F221A9';
+    }
 
     return (
         <View style={styleField}>
-
+            {!mined && opened > 0 && nearMines ? <Text style={[styles.Label, { color: color }]}>{nearMines}</Text>: false}
         </View>
     );
 }
@@ -29,5 +39,15 @@ const styles = StyleSheet.create ({
         borderTopColor: '#CCC',
         borderRightColor: '#333',
         borderBottomColor: '#333'
+    },
+    Opened:{
+        backgroundColor: '#999',
+        borderColor: '#777',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    Label: {
+        fontWeight: 'bold',
+        fontSize: params.fontSize
     }
 });
