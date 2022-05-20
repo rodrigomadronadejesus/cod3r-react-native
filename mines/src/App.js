@@ -11,8 +11,8 @@ export default class App extends Component {
 
     render (){
         return (
-            <View>
-                <Text>Iniciando o Mines!</Text>
+            <View style={styles.Container}>
+                <Text style={styles.Welcome}>Iniciando o Mines!</Text>
                 <Text>
                     Tamanho da grade: 
                     {params.getRowsAmount()}x{params.getColumnsAmount()}
@@ -35,5 +35,15 @@ export default class App extends Component {
 
 
 const styles = StyleSheet.create ({
-
+    Container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#F5FCFF'
+    },
+    Welcome: {
+        fontSize: 20,
+        textAlign: 'center',
+        margin: 10
+    }
 });
