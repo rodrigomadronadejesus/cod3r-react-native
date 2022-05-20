@@ -5,11 +5,15 @@ import Field from "./Field";
 export default props => {
     const rows = props.board.map((rows, r) => {
         const columns = rows.map((field, c) => {
-            return <Field {...field} key={c}/>
+            return (
+                <Field {...field} key={c} onOpen={() => props.onOpenField(r, c)}/>
+            );
         });
 
         return (
-            <View key={r} style={{ flexDirection: 'row' }}>{columns}</View>
+            <View key={r} style={{ flexDirection: 'row' }}>
+                {columns}
+            </View>
         );
     });
 
