@@ -6,6 +6,7 @@ import params from './Params';
 import Field from "./components/Field";
 import MineField from "./components/MineField";
 import Header from "./components/Header";
+import LevelSelection from "./screens/LevelSelection";
 import { 
     createMinedBoard,
     cloneBoard,
@@ -40,7 +41,8 @@ export default class App extends Component {
         return {
             board: createMinedBoard(rows, cols, this.minesAmount()),
             won: false,
-            lost: false
+            lost: false,
+            showLeveSelection: false
         };
     }
 
@@ -77,26 +79,36 @@ export default class App extends Component {
         });
     }
 
+    onLevelSelected = level => {
+        params.difficultLevel = level;
+        this.setState(this.createState)
+    }
+
     render (){
         return (
             <View style={styles.Container}>
+                <LevelSelection 
+                    isVisible={this.state.showLeveSelection} 
+                    onLevelSelected={this.onLevelSelected}
+                    onCancel={() => this.setState({ showLeveSelection: false })}
+                />
                 <Header 
                     flagsLeft={this.minesAmount() - flagUsed(this.state.board)}
                     onNewGame={ () => this.setState(this.setState(this.createState()))}
-                >
-                    <Text style={styles.Welcome}>Iniciando o Mines!</Text>
-                    <Text>
-                        Tamanho da grade: 
-                        {params.getRowsAmount()}x{params.getColumnsAmount()}
-                    </Text>
-                    <View style={styles.board}>
-                        <MineField 
-                            board={this.state.board}
-                            onOpenField={this.onOpenField}
-                            onSelectField={this.onSelectField}
-                        />
-                    </View>
-                </Header>
+                    onFlagPress={ () => this.setState({ showLeveSelection: true }) }
+                />
+                <Text style={styles.Welcome}>Iniciando o Mines!</Text>
+                <Text>
+                    Tamanho da grade: 
+                    {params.getRowsAmount()}x{params.getColumnsAmount()}
+                </Text>
+                <View style={styles.board}>
+                    <MineField 
+                        board={this.state.board}
+                        onOpenField={this.onOpenField}
+                        onSelectField={this.onSelectField}
+                    />
+                </View>
             </View>
         );
     }
