@@ -97,11 +97,6 @@ export default class App extends Component {
                     onNewGame={ () => this.setState(this.setState(this.createState()))}
                     onFlagPress={ () => this.setState({ showLeveSelection: true }) }
                 />
-                <Text style={styles.Welcome}>Iniciando o Mines!</Text>
-                <Text>
-                    Tamanho da grade: 
-                    {params.getRowsAmount()}x{params.getColumnsAmount()}
-                </Text>
                 <View style={styles.board}>
                     <MineField 
                         board={this.state.board}
