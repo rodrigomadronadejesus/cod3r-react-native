@@ -52,6 +52,7 @@ export default props => {
                         <PassoStack
                             {...props}
                             voltar
+                            avancar="TelaC"
                         >
                             <TelaC/>
                         </PassoStack>
