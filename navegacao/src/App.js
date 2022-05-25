@@ -1,6 +1,5 @@
 import React from "react";
-import { SafeAreaView, Text } from "react-native";
-
+import { SafeAreaView } from "react-native";
 
 import TelaA from './views/TelaA';
 import TelaB from './views/TelaB';
