@@ -8,6 +8,9 @@
 		},
 		{
 			"path": "mines"
+		},
+		{
+			"path": "navegacao"
 		}
 	]
 }
