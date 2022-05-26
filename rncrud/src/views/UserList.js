@@ -1,9 +1,44 @@
-import React from 'react';
-import { View, FlatList } from 'react-native';
+import React, { Fragment } from 'react';
+import { View, FlatList, Alert } from 'react-native';
 import users from '../data/users';
-import { Avatar, ListItem } from 'react-native-elements';
+import { Avatar, ListItem, Icon, Button } from 'react-native-elements';
 
 export default props => {
+
+
+    function confirmUserDeletion(user) {
+        Alert.alert('Excluir usuário', 'Deseja excluir o usuário? ',[
+            {
+                text: 'Sim',
+                onPress(){
+                    console.warn('delete ' + user.id);
+                }
+            },
+            {
+                text: 'Não'
+            }
+        ]);
+    }
+
+    function getActions (user){
+        return (
+            <View style={{
+                alignSelf: 'flex-end',
+                flexDirection: 'row'
+            }}>
+                <Button
+                    onPress={ () => props.navigation.navigate("UserForm", user) }
+                    type='clear'
+                    icon={<Icon name="edit" size={25} color="orange"/>}
+                />
+                <Button
+                    onPress={ () => console.log(user) }
+                    type='clear'
+                    icon={<Icon name="delete" size={25} color="orange"/>}
+                />
+            </View>
+        )
+    }
 
     function getUserItem ({ item: info }){
         return (
@@ -12,6 +47,7 @@ export default props => {
                 <ListItem.Content>
                     <ListItem.Title>{info.name}</ListItem.Title>
                     <ListItem.Subtitle>{info.email}</ListItem.Subtitle>
+                    {getActions(info)}
                 </ListItem.Content>
             </ListItem>
         );
