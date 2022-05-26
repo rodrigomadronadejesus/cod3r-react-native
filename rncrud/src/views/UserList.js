@@ -32,9 +32,9 @@ export default props => {
                     icon={<Icon name="edit" size={25} color="orange"/>}
                 />
                 <Button
-                    onPress={ () => console.log(user) }
+                    onPress={ () => confirmUserDeletion(user) }
                     type='clear'
-                    icon={<Icon name="delete" size={25} color="orange"/>}
+                    icon={<Icon name="delete" size={25} color="red"/>}
                 />
             </View>
         )
