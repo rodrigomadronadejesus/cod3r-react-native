@@ -2,7 +2,7 @@ export default [
     {
         id: 1,
         name: 'João Silva',
-        name: 'josil@empmaill.com',
+        email: 'josil@empmaill.com',
         avatarUrl: 'https://cdn.pixabay.com/photo/2016/03/31/19/58/avatar-1295429_960_720.png'
     },
     {
