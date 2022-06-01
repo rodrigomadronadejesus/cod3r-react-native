@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { View, Text, ImageBackground, StyleSheet, FlatList } from 'react-native';
+import { View, Text, ImageBackground, StyleSheet, FlatList, TouchableOpacity, Platform } from 'react-native';
 import moment from 'moment';
 import 'moment/locale/pt-br';
-
+import Icon from 'react-native-vector-icons/FontAwesome'
 
 import commonStyles from '../commonStyles';
 import todayImage from '../../assets/imgs/today.jpg';
@@ -11,6 +11,7 @@ import Task from '../components/Task';
 export default class TaskList extends Component {
 
     state = {
+        showDoneTasks: true,
         tasks: [
             {
                 id: Math.random(),
@@ -39,6 +40,10 @@ export default class TaskList extends Component {
         });
     }
 
+    toggleFilter = () => {
+        this.setState({ showDoneTasks: !this.state.showDoneTasks });
+    }
+
 
     render (){
         const today = moment().locale('pt-br').format('ddd, D [de] MMMM');
@@ -47,6 +52,15 @@ export default class TaskList extends Component {
         return (
             <View style={styles.Container}>
                 <ImageBackground style={styles.Background} source={todayImage}>
+                    <View style={styles.IconBar}>
+                        <TouchableOpacity onPress={this.toggleFilter}>
+                            <Icon 
+                                name={this.state.showDoneTasks ? 'eye' : 'eye-slash'}
+                                size={35}
+                                color={commonStyles.Colors.Secondary}
+                            />
+                        </TouchableOpacity>
+                    </View>
                     <View style={styles.TitleBar}>
                         <Text style={styles.Title}>Hoje</Text>
                         <Text style={styles.Subtitle}>{today}</Text>
@@ -91,5 +105,11 @@ const styles = StyleSheet.create({
         fontSize: 20,
         marginLeft: 20,
         marginBottom: 30
+    },
+    IconBar: {
+        flexDirection: 'row',
+        marginHorizontal: 20,
+        justifyContent: 'flex-end',
+        marginTop: Platform.OS === 'ios' ? 40 : 10
     }
 });
