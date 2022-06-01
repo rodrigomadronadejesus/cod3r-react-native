@@ -6,6 +6,7 @@ import 'moment/locale/pt-br';
 
 import commonStyles from '../commonStyles';
 import todayImage from '../../assets/imgs/today.jpg';
+import Task from '../components/Task';
 
 export default class TaskList extends Component {
     render (){
@@ -21,9 +22,8 @@ export default class TaskList extends Component {
                     </View>
                 </ImageBackground>
                 <View style={styles.TaskList}>
-                    <Text>Tarefa #01</Text>
-                    <Text>Tarefa #02</Text>
-                    <Text>Tarefa #03</Text>
+                    <Task desc="Comprar Livro" estimateAt={new Date()} doneAt={new Date()}/>
+                    <Task desc="Ler Livro" estimateAt={new Date()} doneAt={new Date()}/>
                 </View>
             </View>
         );
