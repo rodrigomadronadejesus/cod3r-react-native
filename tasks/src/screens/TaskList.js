@@ -12,6 +12,7 @@ export default class TaskList extends Component {
 
     state = {
         showDoneTasks: true,
+        visibleTasks: [],
         tasks: [
             {
                 id: Math.random(),
@@ -28,6 +29,10 @@ export default class TaskList extends Component {
         ]
     }
 
+    componentDidMount = () => {
+        this.filterTasks();
+    }
+
     toggleTask = taskId => {
         const tasks = [...this.state.tasks];
 
@@ -38,12 +43,25 @@ export default class TaskList extends Component {
 
             this.setState({ tasks: tasks });
         });
+
+        this.filterTasks();
     }
 
     toggleFilter = () => {
-        this.setState({ showDoneTasks: !this.state.showDoneTasks });
+        this.setState({ showDoneTasks: !this.state.showDoneTasks }, this.filterTasks);
     }
 
+    filterTasks = () => {
+        let visibleTasks = null;
+        if(this.state.showDoneTasks){
+            visibleTasks = [...this.state.tasks];
+        }
+        else {
+            visibleTasks = this.state.tasks.filter(task => task.doneAt === null);
+        }
+
+        this.setState({ visibleTasks });
+    }
 
     render (){
         const today = moment().locale('pt-br').format('ddd, D [de] MMMM');
@@ -68,7 +86,7 @@ export default class TaskList extends Component {
                 </ImageBackground>
                 <View style={styles.TaskList}>
                     <FlatList
-                        data={this.state.tasks}
+                        data={this.state.visibleTasks}
                         keyExtractor={item => `${item.id}`}
                         renderItem={({item}) => <Task {...item} toggleTask={this.toggleTask}/>}
                     />
