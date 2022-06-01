@@ -1,12 +1,22 @@
 import React from "react";
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 
 export default props => {
     return (
-        <View>
+        <View style={styles.Container}>
             <Text>{props.desc}</Text>
             <Text>{props.estimateAt + ""}</Text>
             <Text>{props.doneAt + ""}</Text>
         </View>
     );
 }
+
+const styles = StyleSheet.create ({
+    Container: {
+        flexDirection: 'row',
+        borderColor: '#AAA',
+        borderBottomWidth: 1,
+        alignItems: 'center',
+        paddingVertical: 10
+    }
+});
