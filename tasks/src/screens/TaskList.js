@@ -7,11 +7,14 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 import commonStyles from '../commonStyles';
 import todayImage from '../../assets/imgs/today.jpg';
 import Task from '../components/Task';
+import AddTask from './AddTask';
+import { set } from 'react-native-reanimated';
 
 export default class TaskList extends Component {
 
     state = {
         showDoneTasks: true,
+        showAddTask: true,
         visibleTasks: [],
         tasks: [
             {
@@ -66,9 +69,12 @@ export default class TaskList extends Component {
     render (){
         const today = moment().locale('pt-br').format('ddd, D [de] MMMM');
 
-
         return (
             <View style={styles.Container}>
+                <AddTask 
+                    isVisible={this.state.showAddTask}
+                    onCancel={() => this.setState({showAddTask: false})}
+                />
                 <ImageBackground style={styles.Background} source={todayImage}>
                     <View style={styles.IconBar}>
                         <TouchableOpacity onPress={this.toggleFilter}>
