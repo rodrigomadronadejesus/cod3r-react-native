@@ -10,6 +10,8 @@ import {
     Alert
 } from 'react-native';
 
+import axios from 'axios';
+
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
@@ -17,6 +19,16 @@ import AuthInput from '../components/AuthInput';
 
 import Login from '../../assets/imgs/login.jpg';
 import commonStyles from '../commonStyles';
+
+import { showError, showSuccess, server } from '../common';
+
+const initialState = {
+    name: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+    stateNew: false
+};
 
 export default class Auth extends Component {
 
@@ -30,10 +42,27 @@ export default class Auth extends Component {
 
     signinOrSignup = () => {
         if(this.state.stateNew){
-            Alert.alert('Sucesso!', 'Criar conta');
+            this.signup();
         }
         else {
             Alert.alert('Sucesso', 'Logar')
+        }
+    }
+
+    signup = async () => {
+        try{
+            await axios.post(`${server}/signup`, {
+                name: this.state.name,
+                email: this.state.email,
+                password: this.state.password,
+                confirmPassword: this.state.confirmPassword,
+            });
+            
+            showSuccess('Usuário cadastrado');
+            this.setState({ ...initialState })
+        }  
+        catch(e){
+            showError(e);
         }
     }
 
