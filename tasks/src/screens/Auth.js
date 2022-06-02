@@ -10,6 +10,9 @@ import {
     Alert
 } from 'react-native';
 
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+
 import Login from '../../assets/imgs/login.jpg';
 import commonStyles from '../commonStyles';
 
@@ -34,72 +37,76 @@ export default class Auth extends Component {
 
     render (){
         return (
-            <ImageBackground 
-                source={Login}
-                style={styles.Background}
-            >
-                <Text style={styles.Title}>Tasks</Text>
-                <View style={styles.FormContainer}>
-                    <Text style={styles.Subtitle}>
-                        {this.state.stateNew ? 'Crie a sua conta' : 'Informe seus dados'}
-                    </Text>
-                    {this.state.stateNew && 
-                        (
-                            <TextInput 
-                                placeholder='Nome'
-                                style={styles.Input}
-                                value={this.state.name}
-                                onChangeText={(name) => this.setState({name})}
+            <GestureHandlerRootView style={{flex: 1}}>
+                <SafeAreaView style={{flex: 1}}>
+                    <ImageBackground 
+                        source={Login}
+                        style={styles.Background}
+                    >
+                        <Text style={styles.Title}>Tasks</Text>
+                        <View style={styles.FormContainer}>
+                            <Text style={styles.Subtitle}>
+                                {this.state.stateNew ? 'Crie a sua conta' : 'Informe seus dados'}
+                            </Text>
+                            {this.state.stateNew && 
+                                (
+                                    <TextInput 
+                                        placeholder='Nome'
+                                        style={styles.Input}
+                                        value={this.state.name}
+                                        onChangeText={(name) => this.setState({name})}
 
-                            />
-                        )
+                                    />
+                                )
 
-                    }
-                    <TextInput
-                        placeholder='E-MAIL' 
-                        value={this.state.email}
-                        style={styles.Input}
-                        onChangeText={(email) => this.setState({email})}
-                    />
-                    <TextInput
-                        placeholder='Senha'
-                        value={this.state.password}
-                        style={styles.Input}
-                        onChangeText={(password) => this.setState({password})}
-                        secureTextEntry={true}
-                    />
-                    {
-                        this.state.stateNew && (
+                            }
                             <TextInput
-                                placeholder='Confirmação de Senha'
-                                value={this.state.confirmPassword}
+                                placeholder='E-MAIL' 
+                                value={this.state.email}
                                 style={styles.Input}
-                                onChangeText={(confirmPassword) => this.setState({confirmPassword})}
+                                onChangeText={(email) => this.setState({email})}
+                            />
+                            <TextInput
+                                placeholder='Senha'
+                                value={this.state.password}
+                                style={styles.Input}
+                                onChangeText={(password) => this.setState({password})}
                                 secureTextEntry={true}
                             />
-                        )
-                    }
-                    <TouchableOpacity onPress={this.signinOrSignup}>
-                        <View style={styles.Button}>
+                            {
+                                this.state.stateNew && (
+                                    <TextInput
+                                        placeholder='Confirmação de Senha'
+                                        value={this.state.confirmPassword}
+                                        style={styles.Input}
+                                        onChangeText={(confirmPassword) => this.setState({confirmPassword})}
+                                        secureTextEntry={true}
+                                    />
+                                )
+                            }
+                            <TouchableOpacity onPress={this.signinOrSignup}>
+                                <View style={styles.Button}>
+                                    <Text style={styles.ButtonText}>
+                                        {
+                                            this.state.stateNew ? 'Registrar' : 'Entrar'
+                                        }
+                                    </Text>
+                                </View>
+                            </TouchableOpacity>
+                        </View>
+                        <TouchableOpacity 
+                            style={{padding: 10}}
+                            onPress={(stateNew) => this.setState({ stateNew: !this.state.stateNew })}
+                        >
                             <Text style={styles.ButtonText}>
                                 {
-                                    this.state.stateNew ? 'Registrar' : 'Entrar'
+                                    this.state.stateNew ? 'Já possui conta?' : 'Ainda não possui conta?'
                                 }
                             </Text>
-                        </View>
-                    </TouchableOpacity>
-                </View>
-                <TouchableOpacity 
-                    style={{padding: 10}}
-                    onPress={(stateNew) => this.setState({ stateNew: !this.state.stateNew })}
-                >
-                    <Text style={styles.ButtonText}>
-                        {
-                            this.state.stateNew ? 'Já possui conta?' : 'Ainda não possui conta?'
-                        }
-                    </Text>
-                </TouchableOpacity>
-            </ImageBackground>
+                        </TouchableOpacity>
+                    </ImageBackground>
+                </SafeAreaView>
+            </GestureHandlerRootView>
         );
     }
 }

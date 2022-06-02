@@ -14,10 +14,14 @@ import 'moment/locale/pt-br';
 import AsyncStorage from '@react-native-community/async-storage';
 import Icon from 'react-native-vector-icons/FontAwesome'
 
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+
 import commonStyles from '../commonStyles';
 import todayImage from '../../assets/imgs/today.jpg';
 import Task from '../components/Task';
 import AddTask from './AddTask';
+
 
 const initialState = {
     showDoneTasks: true,
@@ -97,38 +101,42 @@ export default class TaskList extends Component {
         const today = moment().locale('pt-br').format('ddd, D [de] MMMM');
 
         return (
-            <View style={styles.Container}>
-                <AddTask 
-                    isVisible={this.state.showAddTask}
-                    onCancel={() => this.setState({showAddTask: false})}
-                    onSave={this.addTask}
-                />
-                <ImageBackground style={styles.Background} source={todayImage}>
-                    <View style={styles.IconBar}>
-                        <TouchableOpacity onPress={this.toggleFilter}>
-                            <Icon 
-                                name={this.state.showDoneTasks ? 'eye' : 'eye-slash'}
-                                size={35}
-                                color={commonStyles.Colors.Secondary}
+            <GestureHandlerRootView style={{ flex: 1 }}>
+                <SafeAreaView style={{ flex: 1 }}>
+                    <View style={styles.Container}>
+                        <AddTask 
+                            isVisible={this.state.showAddTask}
+                            onCancel={() => this.setState({showAddTask: false})}
+                            onSave={this.addTask}
+                        />
+                        <ImageBackground style={styles.Background} source={todayImage}>
+                            <View style={styles.IconBar}>
+                                <TouchableOpacity onPress={this.toggleFilter}>
+                                    <Icon 
+                                        name={this.state.showDoneTasks ? 'eye' : 'eye-slash'}
+                                        size={35}
+                                        color={commonStyles.Colors.Secondary}
+                                    />
+                                </TouchableOpacity>
+                            </View>
+                            <View style={styles.TitleBar}>
+                                <Text style={styles.Title}>Hoje</Text>
+                                <Text style={styles.Subtitle}>{today}</Text>
+                            </View>
+                        </ImageBackground>
+                        <View style={styles.TaskList}>
+                            <FlatList
+                                data={this.state.visibleTasks}
+                                keyExtractor={item => `${item.id}`}
+                                renderItem={({item}) => <Task {...item} toggleTask={this.toggleTask} onDelete={this.deleteTask}/>}
                             />
+                        </View>
+                        <TouchableOpacity style={styles.AddButton} onPress={() => this.setState({showAddTask: true})} activeOpacity={0.7}>
+                            <Icon name="plus" size={20} color={commonStyles.Colors.Secondary}/>
                         </TouchableOpacity>
                     </View>
-                    <View style={styles.TitleBar}>
-                        <Text style={styles.Title}>Hoje</Text>
-                        <Text style={styles.Subtitle}>{today}</Text>
-                    </View>
-                </ImageBackground>
-                <View style={styles.TaskList}>
-                    <FlatList
-                        data={this.state.visibleTasks}
-                        keyExtractor={item => `${item.id}`}
-                        renderItem={({item}) => <Task {...item} toggleTask={this.toggleTask} onDelete={this.deleteTask}/>}
-                    />
-                </View>
-                <TouchableOpacity style={styles.AddButton} onPress={() => this.setState({showAddTask: true})} activeOpacity={0.7}>
-                    <Icon name="plus" size={20} color={commonStyles.Colors.Secondary}/>
-                </TouchableOpacity>
-            </View>
+                </SafeAreaView>
+            </GestureHandlerRootView>
         );
     }
 }
