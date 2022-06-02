@@ -13,6 +13,8 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
+import AuthInput from '../components/AuthInput';
+
 import Login from '../../assets/imgs/login.jpg';
 import commonStyles from '../commonStyles';
 
@@ -50,7 +52,8 @@ export default class Auth extends Component {
                             </Text>
                             {this.state.stateNew && 
                                 (
-                                    <TextInput 
+                                    <AuthInput 
+                                        icon='user'
                                         placeholder='Nome'
                                         style={styles.Input}
                                         value={this.state.name}
@@ -60,13 +63,15 @@ export default class Auth extends Component {
                                 )
 
                             }
-                            <TextInput
+                            <AuthInput
+                                icon='at'
                                 placeholder='E-MAIL' 
                                 value={this.state.email}
                                 style={styles.Input}
                                 onChangeText={(email) => this.setState({email})}
                             />
-                            <TextInput
+                            <AuthInput
+                                icon='lock'
                                 placeholder='Senha'
                                 value={this.state.password}
                                 style={styles.Input}
@@ -75,7 +80,8 @@ export default class Auth extends Component {
                             />
                             {
                                 this.state.stateNew && (
-                                    <TextInput
+                                    <AuthInput
+                                        icon='asterisk'
                                         placeholder='Confirmação de Senha'
                                         value={this.state.confirmPassword}
                                         style={styles.Input}
@@ -131,27 +137,25 @@ const styles = StyleSheet.create ({
     },
     Input:{
         marginTop: 10,
-        backgroundColor: '#FFF',
-        padding: Platform.OS == 'ios' ? 15: 10
+        backgroundColor: '#FFF'
     },
     Button: {
         backgroundColor: '#080',
         marginTop: 10,
         padding: 10,
-        alignItems: 'center'
+        alignItems: 'center',
+        borderRadius: 5
     },
     ButtonText: {
         fontFamily: commonStyles.FontFamily,
         color: '#FFF',
         fontSize: 20,
-        fontWeight: 'bold'
     },
     Subtitle: {
         fontFamily: commonStyles.FontFamily,
         color: '#FFF',
         fontSize: 20,
         textAlign: 'center',
-        marginBottom: 10,
-        fontWeight: 'bold'
+        marginBottom: 10
     }
 });
