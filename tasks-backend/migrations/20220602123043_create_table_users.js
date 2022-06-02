@@ -3,7 +3,14 @@
  * @returns { Promise<void> }
  */
 exports.up = function(knex) {
-  
+    return Promise.all([
+        knex.schema.createTable('users', table => {
+            table.increments('id').primary();
+            table.string('name').notNull();
+            table.string('email').notNull().unique();
+            table.string('password').notNull();
+        })
+    ])
 };
 
 /**
@@ -11,5 +18,7 @@ exports.up = function(knex) {
  * @returns { Promise<void> }
  */
 exports.down = function(knex) {
-  
+    return Promise.all([
+        knex.schema.dropTable('users')
+    ]);
 };
