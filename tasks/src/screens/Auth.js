@@ -1,10 +1,24 @@
 import React, { Component } from 'react';
-import { ImageBackground, Text, StyleSheet } from 'react-native';
+import { 
+    ImageBackground, 
+    Text, 
+    StyleSheet,
+    View,
+    TextInput,
+    TouchableOpacity,
+    Platform
+} from 'react-native';
 
 import Login from '../../assets/imgs/login.jpg';
 import commonStyles from '../commonStyles';
 
 export default class Auth extends Component {
+
+    state = {
+        email: '',
+        password: ''
+    }
+
     render (){
         return (
             <ImageBackground 
@@ -12,6 +26,25 @@ export default class Auth extends Component {
                 style={styles.Background}
             >
                 <Text style={styles.Title}>Tasks</Text>
+                <View style={styles.FormContainer}>
+                    <TextInput
+                        placeholder='E-MAIL' 
+                        value={this.state.email}
+                        style={styles.Input}
+                        onChangeText={(email) => this.setState({email})}
+                    />
+                    <TextInput
+                        placeholder='Senha'
+                        value={this.state.password}
+                        style={styles.Input}
+                        onChangeText={(password) => this.setState({password})}
+                    />
+                    <TouchableOpacity>
+                        <View style={styles.Button}>
+                            <Text style={styles.ButtonText}>Entrar</Text>
+                        </View>
+                    </TouchableOpacity>
+                </View>
             </ImageBackground>
         );
     }
@@ -29,5 +62,27 @@ const styles = StyleSheet.create ({
         color: commonStyles.Colors.Secondary,
         fontSize: 70,
         marginBottom: 10
+    },
+    FormContainer: {
+        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+        padding: 20,
+        width: "90%"
+    },
+    Input:{
+        marginTop: 10,
+        backgroundColor: '#FFF',
+        padding: Platform.OS == 'ios' ? 15: 10
+    },
+    Button: {
+        backgroundColor: '#080',
+        marginTop: 10,
+        padding: 10,
+        alignItems: 'center'
+    },
+    ButtonText: {
+        fontFamily: commonStyles.FontFamily,
+        color: '#FFF',
+        fontSize: 20,
+        fontWeight: 'bold'
     }
 });
