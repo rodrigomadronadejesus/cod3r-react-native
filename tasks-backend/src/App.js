@@ -11,6 +11,7 @@ const app = express();
 const app_port = 3000;
 
 consign()
+    .include('./src/config/passport.js')
     .then('src/config/middlewares.js')
     .then('src/api')
     .then('src/config/routes.js')
