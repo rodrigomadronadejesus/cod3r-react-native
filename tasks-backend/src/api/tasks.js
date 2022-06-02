@@ -1,5 +1,6 @@
 const { status } = require('express/lib/response');
 const moment = require('moment');
+const extractors = require('passport-jwt/lib/extract_jwt');
 
 module.exports = app => {
     const getTasks = (req, res) => {
@@ -42,4 +43,30 @@ module.exports = app => {
             })
             .catch(err => res.status(400).json(err));
     }
+
+    const updateTaskDoneAt = (req, res, doneAt) => {
+        app.db('task')
+            .where({ id: req.params.id, userId: req.user.id })
+            .update({ doneAt })
+            .then(_ => res.status(204).send())
+            .catch(err => res.status(400).json(err))
+    }
+
+    const toggleTask = (req, res) => {
+        app.db('tasks')
+            .where({ id: req.params.id, userId: req.user.id })
+            .first()
+            .then(task => {
+                if(!task){
+                    const msg = `Task com id ${req.params.id} não encontrada.`
+                    return res.status(400).send(msg);
+                }
+                
+                const doneAt = task.doneAt ? null : new Date();
+                updateTaskDoneAt(req, res, doneAt)
+            })
+            .catch(err => res.status(400).json(err))
+    }
+
+    return { getTasks, save, remove, toggleTask };
 }
