@@ -82,6 +82,20 @@ export default class Auth extends Component {
     }
 
     render (){
+
+        const validations = [];
+
+        validations.push(this.state.email && this.state.email.includes('@'));
+        validations.push(this.state.password && this.state.password.length >= 6);
+        
+        if(this.state.stateNew){
+            validations.push(this.state.name && this.state.name.trim().length >= 3);
+            validations.push(this.state.password === this.state.confirmPassword);
+        }
+
+        const validForm = validations.reduce((t, a) => t && a);
+
+
         return (
             <GestureHandlerRootView style={{flex: 1}}>
                 <SafeAreaView style={{flex: 1}}>
@@ -134,8 +148,8 @@ export default class Auth extends Component {
                                     />
                                 )
                             }
-                            <TouchableOpacity onPress={this.signinOrSignup}>
-                                <View style={styles.Button}>
+                            <TouchableOpacity onPress={this.signinOrSignup} disabled={!validForm}>
+                                <View style={[styles.Button, validForm ? {}: {backgroundColor: '#AAA'}]}>
                                     <Text style={styles.ButtonText}>
                                         {
                                             this.state.stateNew ? 'Registrar' : 'Entrar'
