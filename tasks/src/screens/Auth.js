@@ -6,7 +6,8 @@ import {
     View,
     TextInput,
     TouchableOpacity,
-    Platform
+    Platform,
+    Alert
 } from 'react-native';
 
 import Login from '../../assets/imgs/login.jpg';
@@ -19,7 +20,16 @@ export default class Auth extends Component {
         email: '',
         password: '',
         confirmPassword: '',
-        stateNew: true
+        stateNew: false
+    }
+
+    signinOrSignup = () => {
+        if(this.state.stateNew){
+            Alert.alert('Sucesso!', 'Criar conta');
+        }
+        else {
+            Alert.alert('Sucesso', 'Logar')
+        }
     }
 
     render (){
@@ -69,7 +79,7 @@ export default class Auth extends Component {
                             />
                         )
                     }
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={this.signinOrSignup}>
                         <View style={styles.Button}>
                             <Text style={styles.ButtonText}>
                                 {
@@ -79,6 +89,16 @@ export default class Auth extends Component {
                         </View>
                     </TouchableOpacity>
                 </View>
+                <TouchableOpacity 
+                    style={{padding: 10}}
+                    onPress={(stateNew) => this.setState({ stateNew: !this.state.stateNew })}
+                >
+                    <Text style={styles.ButtonText}>
+                        {
+                            this.state.stateNew ? 'Já possui conta?' : 'Ainda não possui conta?'
+                        }
+                    </Text>
+                </TouchableOpacity>
             </ImageBackground>
         );
     }
