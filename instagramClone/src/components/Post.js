@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Image, Dimensions } from 'react-native';
 
+import Author from './Author';
+
 class Post extends Component {
     render (){
         return (
@@ -9,6 +11,7 @@ class Post extends Component {
                     source={this.props.image}
                     style={styles.Image}
                 />
+                <Author email='rodrigomadronadejesus' nickname='Rodrigo de tal'/>
             </View>
         );
     }
