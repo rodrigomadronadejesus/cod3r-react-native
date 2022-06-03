@@ -20,7 +20,6 @@ import axios from 'axios';
 
 import commonStyles from '../commonStyles';
 
-
 import todayImage from '../../assets/imgs/today.jpg';
 import tomorrowImage from '../../assets/imgs/tomorrow.jpg';
 import weekImage from '../../assets/imgs/week.jpg';

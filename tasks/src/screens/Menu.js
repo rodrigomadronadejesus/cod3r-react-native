@@ -56,7 +56,6 @@ const styles = StyleSheet.create ({
         fontSize: 20,
         marginBottom: 5
     },
-    
     Email: {
         fontFamily: commonStyles.FontFamily,
         fontSize: 15,
