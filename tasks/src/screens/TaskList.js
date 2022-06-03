@@ -51,7 +51,9 @@ export default class TaskList extends Component {
 
     loadTasks = async () => {
         try {
-            const maxDate = moment().format('YYYY-MM-DD 23:59:59');
+            const maxDate = moment()
+                                .add({days: this.props.daysAhead})
+                                .format('YYYY-MM-DD 23:59:59');
             const res = await axios.get(`${server}/tasks?date=${maxDate}`);
             this.setState({ tasks: res.data }, this.filterTasks);
         } catch(e) {
@@ -132,6 +134,9 @@ export default class TaskList extends Component {
                         />
                         <ImageBackground style={styles.Background} source={todayImage}>
                             <View style={styles.IconBar}>
+                                <TouchableOpacity onPress={() => this.props.navigation.openDrawer()}>
+                                    <Icon name='bars' size={35} color={commonStyles.Colors.Secondary}/>
+                                </TouchableOpacity>
                                 <TouchableOpacity onPress={this.toggleFilter}>
                                     <Icon 
                                         name={this.state.showDoneTasks ? 'eye' : 'eye-slash'}
@@ -141,7 +146,7 @@ export default class TaskList extends Component {
                                 </TouchableOpacity>
                             </View>
                             <View style={styles.TitleBar}>
-                                <Text style={styles.Title}>Hoje</Text>
+                                <Text style={styles.Title}>{this.props.title}</Text>
                                 <Text style={styles.Subtitle}>{today}</Text>
                             </View>
                         </ImageBackground>
@@ -193,7 +198,7 @@ const styles = StyleSheet.create({
     IconBar: {
         flexDirection: 'row',
         marginHorizontal: 20,
-        justifyContent: 'flex-end',
+        justifyContent: 'space-between',
         marginTop: Platform.OS === 'ios' ? 40 : 10
     },
     AddButton: {
