@@ -49,19 +49,24 @@ export default class TaskList extends Component {
         this.loadTasks();
     }
 
-    toggleTask = taskId => {
-        const tasks = [...this.state.tasks];
+    loadTasks = async () => {
+        try {
+            const maxDate = moment().format('YYYY-MM-DD 23:59:59');
+            const res = await axios.get(`${server}/tasks?date=${maxDate}`);
+            this.setState({ tasks: res.data }, this.filterTasks);
+        } catch(e) {
+            showError(e);
+        }
+    }
 
-        tasks.forEach(task => {
-            if(task.id === taskId){
-                task.doneAt = task.doneAt ? null : new Date();
-            }
-
-            this.setState({ tasks: tasks });
-        });
-
-        this.filterTasks();
-        AsyncStorage.setItem('tasksState', JSON.stringify(this.setState));
+    toggleTask = async taskId => {
+        try{
+            await axios.put(`${server}/tasksToggle/${taskId}`);
+            this.loadTasks();
+        }
+        catch(e){
+            showError(e);
+        }
     }
 
     toggleFilter = () => {
@@ -85,36 +90,30 @@ export default class TaskList extends Component {
         );
     }
 
-    addTask = newTask => {
-        if(!newTask.desc || !newTask.desc.trim()){
-            Alert.alert("dados Inválidos", "descrição não informada!");
-            return;
+    addTask = async newTask => {
+        if(!newTask.desc || !newTask.desc.trim()) {
+            Alert.alert('Dados Inválidos', 'Descrição não informada!')
+            return 
         }
-        
-        const tasks = [...this.state.tasks];
-        tasks.push({
-            id: Math.random(),
-            desc: newTask.desc,
-            estimateAt: newTask.date,
-            doneAt: null
-        });
 
-        this.setState({tasks, showAddTask: false}, this.filterTasks);
-    }
-
-    deleteTask = id => {
-        const tasks = this.state.tasks.filter (task => task.id !== id);
-
-        this.setState({tasks}, this.filterTasks);
-    }
-
-    loadTasks = async () => {
         try {
-            const maxDate = moment().format('YYYY-MM-DD 23:59:59');
-            const res = await axios.get(`${server}/tasks?date=${maxDate}`);
-            this.setState({ tasks: res.data }, this.filterTasks);
+            await axios.post(`${server}/tasks`, {
+               desc: newTask.desc,
+               estimateAt: newTask.date 
+            })
+
+            this.setState({ showAddTask: false }, this.loadTasks)
+        } catch(e) {
+            showError(e)
         }
-        catch(e) {
+    }
+
+    deleteTask = async taskId => {
+        try{
+            await axios.delete(`${server}/tasks/${taskId}`);
+            this.loadTasks();
+        }
+        catch (e){
             showError(e);
         }
     }
