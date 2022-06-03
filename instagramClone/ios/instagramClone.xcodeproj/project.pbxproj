@@ -28,6 +28,7 @@
 		0BBB4C2EEBE145C69AEE4C84 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7834B47FE34A4F90B78A88D5 /* Octicons.ttf */; };
 		6A9266C4F7F44C23A890F83C /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2D4CAAB26ADE45249BC39EA5 /* SimpleLineIcons.ttf */; };
 		3CD4ADA02A24438C9C1DD377 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A559CCAAD107489784F6DADC /* Zocial.ttf */; };
+		8A0FCD6132AC4891B9E325EA /* shelter.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8658A5481937484280D9088E /* shelter.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		7834B47FE34A4F90B78A88D5 /* Octicons.ttf */ = {isa = PBXFileReference; name = "Octicons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		2D4CAAB26ADE45249BC39EA5 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; name = "SimpleLineIcons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		A559CCAAD107489784F6DADC /* Zocial.ttf */ = {isa = PBXFileReference; name = "Zocial.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		8658A5481937484280D9088E /* shelter.otf */ = {isa = PBXFileReference; name = "shelter.otf"; path = "../src/assets/fonts/shelter.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +178,7 @@
 				7834B47FE34A4F90B78A88D5 /* Octicons.ttf */,
 				2D4CAAB26ADE45249BC39EA5 /* SimpleLineIcons.ttf */,
 				A559CCAAD107489784F6DADC /* Zocial.ttf */,
+				8658A5481937484280D9088E /* shelter.otf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -287,6 +290,7 @@
 				0BBB4C2EEBE145C69AEE4C84 /* Octicons.ttf in Resources */,
 				6A9266C4F7F44C23A890F83C /* SimpleLineIcons.ttf in Resources */,
 				3CD4ADA02A24438C9C1DD377 /* Zocial.ttf in Resources */,
+				8A0FCD6132AC4891B9E325EA /* shelter.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
