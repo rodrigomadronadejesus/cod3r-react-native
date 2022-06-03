@@ -99,7 +99,7 @@ const DrawerNavigator = props => {
                 {props => <TaskList {...props} title='Mês' daysAhead={30} />}
             </Drawer.Screen>
         </Drawer.Navigator>
-    )
+    );
 }
 
 

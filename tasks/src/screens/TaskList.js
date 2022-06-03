@@ -19,7 +19,13 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import axios from 'axios';
 
 import commonStyles from '../commonStyles';
+
+
 import todayImage from '../../assets/imgs/today.jpg';
+import tomorrowImage from '../../assets/imgs/tomorrow.jpg';
+import weekImage from '../../assets/imgs/week.jpg';
+import monthImage from '../../assets/imgs/month.jpg';
+
 import Task from '../components/Task';
 import AddTask from './AddTask';
 
@@ -52,8 +58,8 @@ export default class TaskList extends Component {
     loadTasks = async () => {
         try {
             const maxDate = moment()
-                                .add({days: this.props.daysAhead})
-                                .format('YYYY-MM-DD 23:59:59');
+                .add({ days: this.props.daysAhead})
+                .format('YYYY-MM-DD 23:59:59');
             const res = await axios.get(`${server}/tasks?date=${maxDate}`);
             this.setState({ tasks: res.data }, this.filterTasks);
         } catch(e) {
@@ -120,6 +126,36 @@ export default class TaskList extends Component {
         }
     }
 
+    getImage = () => {
+        switch(this.props.daysAhead){
+            case 0:
+                return todayImage;
+            case 1:
+                return tomorrowImage;
+            case 7:
+                return weekImage;
+            case 30:
+                return monthImage;
+            default:
+                return todayImage;
+        }
+    }
+
+    getColor = () => {
+        switch(this.props.daysAhead){
+            case 0:
+                return commonStyles.Colors.Today;
+            case 1:
+                return commonStyles.Colors.Tomorrow;
+            case 7:
+                return commonStyles.Colors.Week;
+            case 30:
+                return commonStyles.Colors.Month;
+            default:
+                return commonStyles.Colors.Today;
+        }
+    }
+
     render (){
         const today = moment().locale('pt-br').format('ddd, D [de] MMMM');
 
@@ -132,7 +168,7 @@ export default class TaskList extends Component {
                             onCancel={() => this.setState({showAddTask: false})}
                             onSave={this.addTask}
                         />
-                        <ImageBackground style={styles.Background} source={todayImage}>
+                        <ImageBackground style={styles.Background} source={this.getImage()}>
                             <View style={styles.IconBar}>
                                 <TouchableOpacity onPress={() => this.props.navigation.openDrawer()}>
                                     <Icon name='bars' size={35} color={commonStyles.Colors.Secondary}/>
@@ -157,7 +193,7 @@ export default class TaskList extends Component {
                                 renderItem={({item}) => <Task {...item} toggleTask={this.toggleTask} onDelete={this.deleteTask}/>}
                             />
                         </View>
-                        <TouchableOpacity style={styles.AddButton} onPress={() => this.setState({showAddTask: true})} activeOpacity={0.7}>
+                        <TouchableOpacity style={[styles.AddButton, { backgroundColor: this.getColor()}]} onPress={() => this.setState({showAddTask: true})} activeOpacity={0.7}>
                             <Icon name="plus" size={20} color={commonStyles.Colors.Secondary}/>
                         </TouchableOpacity>
                     </View>
