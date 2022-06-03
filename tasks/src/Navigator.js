@@ -9,7 +9,6 @@ import Menu from './screens/Menu';
 
 import commonStyles from './commonStyles';
 
-
 const menuConfig = {
     labelStyle: {
         fontFamily: commonStyles.fontFamily,
@@ -20,13 +19,14 @@ const menuConfig = {
     headerShown: false,
 }
 
-
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
 const DrawerNavigator = props => {
     return (
-        <Drawer.Navigator screenOptions={menuConfig}>
+        <Drawer.Navigator screenOptions={menuConfig}
+            drawerContent={(props) => <Menu {...props} email="rodrigom@gmail.com" name="Rodrigo Madrona" />}
+        >
             <Drawer.Screen name='Today' options={{ title: 'Hoje' }}>
                 { props => <TaskList {...props} title='Hoje' dayAhead={0} />}
             </Drawer.Screen>
